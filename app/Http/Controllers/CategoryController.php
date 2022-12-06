@@ -26,7 +26,7 @@ class CategoryController extends Controller
             $categories = DB::table('categories')
                 ->select(DB::raw("id, name, deleted_at"))
                 ->where("categories.deleted_at", "=", null)
-                ->where("categories.name", "like", "%search%")
+                ->where("categories.name", "like", "%$search%")
                 ->get();
         }
         return Inertia::render('Categories/Index', [
