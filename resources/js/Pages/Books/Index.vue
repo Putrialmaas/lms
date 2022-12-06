@@ -123,8 +123,8 @@ onMounted(() => {
                                                     <PrimaryButton>
                                                         Edit
                                                     </PrimaryButton>
-                                                    </Link>
-                                                    <Link :href="
+                                                </Link>
+                                                <Link :href="
                                                         route(
                                                             'books.destroy',
                                                             book.id
@@ -133,7 +133,7 @@ onMounted(() => {
                                                     <DangerButton class="ml-4">
                                                         Remove
                                                     </DangerButton>
-                                                    </Link>
+                                                </Link>
                                                 </td>
                                             </tr>
                                             <tr class="bg-blue-100 border-b transition duration-300 ease-in-out hover:bg-blue-200"

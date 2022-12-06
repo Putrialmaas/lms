@@ -61,16 +61,16 @@ const updateData = (book) => {
     });
 };
 
-const chooseLibrary = (library) => {
-    library.value = library;
+const chooseLibrary = (bookLibrary) => {
+    library.value = bookLibrary;
 };
 
-const choosePublisher = (publisher) => {
-    publisher.value = publisher;
+const choosePublisher = (bookPublisher) => {
+    publisher.value = bookPublisher;
 };
 
-const chooseCategory = (category) => {
-    category.value = category;
+const chooseCategory = (bookCategory) => {
+    category.value = bookCategory;
 };
 
 defineProps({
@@ -120,10 +120,10 @@ defineProps({
                                 </div>
                             </button>
                             <ul class="dropdown-menu min-w-max absolute w-full bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 hidden m-0 bg-clip-padding border-none"
-                                aria-labelledby="dropdown_type">
+                                aria-labelledby="dropdown_library">
                                 <li class="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
                                     v-for="library in libraries" 
-                                    @click="chooseType(library)">
+                                    @click="chooseLibrary(library)">
                                     {{ library.name }}
                                 </li>
                             </ul>
@@ -153,10 +153,10 @@ defineProps({
                                 </div>
                             </button>
                             <ul class="dropdown-menu min-w-max absolute w-full bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 hidden m-0 bg-clip-padding border-none"
-                                aria-labelledby="dropdown_type">
+                                aria-labelledby="dropdown_publisher">
                                 <li class="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
                                     v-for="publisher in publishers" 
-                                    @click="chooseType(publisher)">
+                                    @click="choosePublisher(publisher)">
                                     {{ publisher.name }}
                                 </li>
                             </ul>
@@ -186,10 +186,10 @@ defineProps({
                                 </div>
                             </button>
                             <ul class="dropdown-menu min-w-max absolute w-full bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 hidden m-0 bg-clip-padding border-none"
-                                aria-labelledby="dropdown_type">
+                                aria-labelledby="dropdown_category">
                                 <li class="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
                                     v-for="category in categories" 
-                                    @click="chooseType(category)">
+                                    @click="chooseCategory(category)">
                                     {{ category.name }}
                                 </li>
                             </ul>

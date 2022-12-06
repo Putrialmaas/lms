@@ -41,12 +41,16 @@ class BookController extends Controller
                 )
                     ->where("books.deleted_at", "=", null)
                     ->where("books.title", "like", "%$search%")
+                    ->orWhere("libraries.name", "like", "%$search%")
+                    ->orWhere("publishers.name", "like", "%$search%")
+                    ->orWhere("categories.name", "like", "%$search%")
+                    ->orWhere("books.year", "like", "%$search%")                    
                     ->join("libraries", "libraries.id", '=', "library_id")
                     ->join("publishers", "publishers.id", '=', "publisher_id")
                     ->join("categories", "categories.id", '=', "category_id")
                     ->get();  
         }
-        return Inertia::render('Books/Index', [
+        return Inertia::render("Books/Index", [
             'books'=> $books
         ]);  
     }
@@ -90,7 +94,7 @@ class BookController extends Controller
             ->select(DB::raw("id, name, deleted_at"))
             ->where("deleted_at", "=", null)
             ->get();
-        return Inertia::render('Books/Create', [
+        return Inertia::render("Books/Create", [
             'libraries'=> $libraries,
             'publishers'=> $publishers,
             'categories'=> $categories,
@@ -154,19 +158,19 @@ class BookController extends Controller
             ->select(DB::raw("id, name, deleted_at"))
             ->where("deleted_at", "=", null)
             ->get();
-        $book = DB::table('books')
+        $book = DB::table("books")
         ->select(
             DB::raw("
                 books.id as id, books.title as title, books.year as year, libraries.id as library_id, libraries.name as library_name, publishers.id as publisher_id, publishers.name as 
                 publisher_name, categories.id as category_id, categories.name as category_name, books.deleted_at as deleted_at
                 ")
         )
-        ->where("books.id", "=", $id)
-        ->where("books.deleted_at", "=", null)
-        ->join("libraries", "libraries.id", '=', "library_id")
-        ->join("publishers", "publishers.id", '=', "publisher_id")
-        ->join("categories", "categories.id", '=', "category_id")
-        ->get();
+            ->where("books.id", "=", $id)
+            ->where("books.deleted_at", "=", null)
+            ->join("libraries", "libraries.id", '=', "library_id")
+            ->join("publishers", "publishers.id", '=', "publisher_id")
+            ->join("categories", "categories.id", '=', "category_id")
+            ->get();
 
         return Inertia::render("Books/Edit", [
             "libraries" => $libraries,
